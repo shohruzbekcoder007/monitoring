@@ -187,6 +187,7 @@ if (create_staff != undefined) {
             status: staff.getAttribute("staff-status"),
             user_name: document.querySelector("#user_name").value,
             password: document.querySelector("#password").value,
+            full_name: document.querySelector("#full_name").value
         }
         request = $.ajax({
             url: "/admin/staff_create",
@@ -433,11 +434,11 @@ $('#staff_tuman_id').on('change', (event) => {
 });
 
 $('#staff_qishloq_id').on('change', (event) => {
-    getMahalla(event.target.value, 'staff_#mahalla_id');
+    getMahalla(event.target.value, '#staff_mahalla_id');
 });
 
 $('#staff_mahalla_id').on('change', (event) => {
-    getUchastka(event.target.value, 'staff_#uchastka_id');
+    getUchastka(event.target.value, '#staff_uchastka_id');
 });
 
 $(document).ready(function() {
@@ -454,7 +455,7 @@ function createPDF() {
     style = style + "padding: 2px 3px;text-align: center;}";
     style = style + "</style>";
 
-    var win = window.open('', '', 'height=700,width=700');
+    var win = window.open('', '', 'height=700, width=700');
     win.document.write('<html><head>');
     win.document.write('<title>O\'zbekiston Respublikasi Davlat statistika qo\'mitasi</title>');
     win.document.write(style);

@@ -57,6 +57,10 @@ html(lang="en")
                                             //-     option(value=`${item._id}` id=`${item._id}`)= item.name
                                     .input-group.input-group-sm.mb-3
                                         .input-group-prepend
+                                            span(class="input-group-text" id="full_name_login") FISH:
+                                        input(type="text" id="full_name" class="form-control" aria-label="Small" aria-describedby="full_name_login")
+                                    .input-group.input-group-sm.mb-3
+                                        .input-group-prepend
                                             span(class="input-group-text" id="user_name_login") User name:
                                         input(type="text" id="user_name" class="form-control" aria-label="Small" aria-describedby="user_name_login")
                                     .input-group.input-group-sm.mb-3

@@ -1,0 +1,112 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/font-awesome.min.css")
+        link(rel="stylesheet", href=`/css/bootstrap.min.css`)
+        link(rel="stylesheet", href=`/css/main.css`)
+        script(src="/js/jquery.js")
+        title login page
+    body
+        .container
+            ul.nav.justify-content-end.nav-menu
+                li.nav-item
+                    a(class="nav-link" href="/") Bosh sahifa
+                li.nav-item
+                    a(class="nav-link" href="/staff") Xodimlar
+                li.nav-item
+                    a(class="nav-link" href="/visit") Yo'qlama
+                li.nav-item
+                    a(class="nav-link" href="/admin") Admin
+        .table-container
+            ul 
+                each item in allUsers
+                    li= item.full_name
+        //- .table-container#tab
+        //-     table.table.table-bordered
+        //-         thead
+        //-             tr
+        //-                 th(scope="col" rowspan="2") T/r
+        //-                 th(scope="col" rowspan="2") Tuman(shahar) nomi
+        //-                 th(scope="col" rowspan="2") Jami turar joylar soni, birlik
+        //-                 th(scope="col" colspan="3") Suxbat o'tkazilgan xonadonlar soni (1-shakil bo'yicha),birlik
+        //-                 th(scope="col" rowspan="2") Doimiy ro'yxatda turuvchi aholi soni
+        //-                 th(scope="col" colspan="3") Ro'yxatdan o'tkazilgan shaxslar soni
+        //-                 th(scope="col" colspan="2") Ro'yxatdan o'tkazilgan vaqtincha yashayotgan shaxslar soni
+        //-             tr
+        //-                 th(scope="col") Bir kunda
+        //-                 th(scope="col") Davir boshidan
+        //-                 th(scope="col") Ulushi %
+        //-                 th(scope="col") Bir kunda
+        //-                 th(scope="col") Davir boshidan
+        //-                 th(scope="col") Ulushi %
+        //-                 th(scope="col") Bir kunda
+        //-                 th(scope="col") Davir boshidan
+        //-         tbody
+        //-             tr
+        //-                 th(scope="row") A
+        //-                 th B
+        //-                 th 1
+        //-                 th 2
+        //-                 th 3
+        //-                 th 4
+        //-                 th 5
+        //-                 th 6
+        //-                 th 7
+        //-                 th 8
+        //-                 th 9
+        //-                 th 10
+        //-             tr
+        //-                 th(scope="row") X
+        //-                 th Jami
+        //-                 th= reja_turarjoy_soni
+        //-                 th= turarjoy_son_kunlik
+        //-                 th= turarjoy_soni
+        //-                 th= `${((turarjoy_soni/reja_turarjoy_soni)*100).toFixed(2)}%`
+        //-                 th= reja_aholi_soni
+        //-                 th= aholi_soni_kunlik
+        //-                 th= aholi_soni
+        //-                 th= `${((aholi_soni/reja_aholi_soni)*100).toFixed(2)}%`
+        //-                 th= vaqtincha_kunlik
+        //-                 th= vaqtincha
+        //-             -
+        //-                 let tr = 0;
+        //-             each item in tumanlar
+        //-                 -
+        //-                     tr++;
+        //-                     let turar_joy_qiymat = 0;
+        //-                     let aholi_qiymat = 0;
+        //-                     let vaqtincha_qiymat = 0;
+        //-                     let turar_joy_qiymat_kunlik = 0;
+        //-                     let aholi_qiymat_kunlik = 0;
+        //-                     let vaqtincha_qiymat_kunlik = 0;
+        //-                     reports.forEach(elem => {
+        //-                         if (elem.tuman_id._id+"" == item._id+""){
+        //-                             turar_joy_qiymat += elem.turar_joy_soni
+        //-                             aholi_qiymat += elem.aholi_soni
+        //-                             vaqtincha_qiymat += elem.vaqtincha
+        //-                             turar_joy_qiymat_kunlik += elem.turar_joy_soni_kunlik
+        //-                             aholi_qiymat_kunlik += elem.aholi_soni_kunlik
+        //-                             vaqtincha_qiymat_kunlik += elem.vaqtincha_kunlik
+        //-                         }
+        //-                     })
+        //-                 tr
+        //-                     th(scope="row")= tr
+        //-                     td 
+        //-                         a(href=`/tuman?tuman=${item._id}`)= item.name
+        //-                     td= item.turar_joy_soni
+        //-                     td= turar_joy_qiymat_kunlik
+        //-                     td= turar_joy_qiymat
+        //-                     td= `${((turar_joy_qiymat/item.turar_joy_soni)*100).toFixed(2)}%`
+        //-                     td= item.aholi_soni
+        //-                     td= aholi_qiymat_kunlik
+        //-                     td= aholi_qiymat
+        //-                     td= `${((aholi_qiymat/item.aholi_soni)*100).toFixed(2)}%`
+        //-                     td= vaqtincha_qiymat_kunlik
+        //-                     td= vaqtincha_qiymat
+        //- p(style="padding: 0 10px; text-align: right")
+            input(type="button" value="Chop qilish" id="btPrint" class="btn btn-secondary" onclick="createPDF()")
+        script(src="/js/main.js") 
+                    

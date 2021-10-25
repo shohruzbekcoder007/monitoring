@@ -148,6 +148,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    full_name: {
+        type: String,
+        required: true
+    }
 })
 const User = mongoose.model("users", UserSchema);
 

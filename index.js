@@ -28,6 +28,9 @@ app.use('/', main);
 const positions = require('./src/positions/positions_router');
 app.use('/positions', positions);
 
+const visit = require('./src/visits/visits_router');
+app.use('/visit', visit);
+
 app.listen(config.port, () => {
     logger.info(`[*] 🚀 Listening on port : ${config.port} ..`);
 });

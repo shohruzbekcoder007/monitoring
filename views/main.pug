@@ -17,6 +17,8 @@ html(lang="en")
                 li.nav-item
                     a(class="nav-link" href="/staff") Xodimlar
                 li.nav-item
+                    a(class="nav-link" href="/visit") Yo'qlama
+                li.nav-item
                     a(class="nav-link" href="/admin") Admin
             -
                 let aholi_soni = 0;
@@ -45,13 +47,13 @@ html(lang="en")
                         .card-body.main-card
                             h5.card-title= `Turar joyning ${((turarjoy_soni/reja_turarjoy_soni)*100).toFixed(2)}% i`
                             p.card-text= `${reja_turarjoy_soni} ta dan ${turarjoy_soni} tasi`
-                            p.card-text= `Bugungi: ${"-"} ta`
+                            p.card-text= `Bugungi: ${turarjoy_son_kunlik} ta`
                 .col-sm-6
                     .card
                         .card-body.main-card
                             h5.card-title= `Aholining ${((aholi_soni/reja_aholi_soni)*100).toFixed(2)}% i`
                             p.card-text= `${reja_aholi_soni} ta dan ${aholi_soni} tasi`
-                            p.card-text= `Bugungi: ${"-"}  ta`
+                            p.card-text= `Bugungi: ${aholi_soni_kunlik}  ta`
         .table-container#tab
             table.table.table-bordered
                 thead

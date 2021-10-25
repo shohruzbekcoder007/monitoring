@@ -48,7 +48,7 @@ html(lang="en")
                             h5.card-title= `Aholining ${((aholi_soni/reja_aholi_soni)*100).toFixed(2)}% i`
                             p.card-text= `${reja_aholi_soni} ta dan ${aholi_soni} tasi`
                             p.card-text= `Bugungi: ${"-"}  ta`
-        .table-container
+        .table-container#tab
             table.table.table-bordered
                 thead
                     tr
@@ -128,4 +128,6 @@ html(lang="en")
                             td= `${((aholi_qiymat/item.aholi_soni)*100).toFixed(2)}%`
                             td= aholi_qiymat_kunlik
                             td= vaqtincha_qiymat
-                    
+        p(style="padding: 0 10px; text-align: right")
+            input(type="button" value="Chop qilish" id="btPrint" class="btn btn-secondary" onclick="createPDF()")
+        script(src="/js/main.js") 
