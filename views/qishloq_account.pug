@@ -1,0 +1,43 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/font-awesome.min.css")
+        link(rel="stylesheet", href=`/css/bootstrap.min.css`)
+        link(rel="stylesheet", href=`/css/uchastka_account.css`)
+        script(src="/js/jquery.js")
+        title login page
+    body
+        .sidenav
+            .login-main-text
+                h3= `${qishloq.viloyat_id.name} viloyati ${qishloq.tuman_id.name} tumani ${qishloq.name} ro'yxatga olish uchastkasi`
+                p= `Rejadagi turarjoy soni: ${qishloq.turar_joy_soni}`
+                p= `Rejadagi aholi soni: ${qishloq.aholi_soni}`
+        .main
+            .my-report 
+                -   
+                    let uniqueReport = []
+                    let turar_joy_soni = 0
+                    let aholi_soni = 0
+                    for(let i = 0; i < reports.length; i++){
+                        let t = true
+                        for(let j = i + 1; j < reports.length; j++){
+                            if(reports[i].mahalla_id._id == reports[j].mahalla_id._id){
+                                t = false
+                            }
+                        }
+                        if(t){
+                            uniqueReport.push(reports[i])
+                        }
+                    }
+                    reports.forEach(elem => {turar_joy_soni += elem.turar_joy_soni; aholi_soni += elem.aholi_soni})
+                h4.report-page-title= `Ruyxatdan o'tgan turar joylar soni ${turar_joy_soni} ta - ${((turar_joy_soni/qishloq.turar_joy_soni)*100).toFixed(2)} %`
+                h4.report-page-title= `Ruyxatdan o'tgan aholi soni ${aholi_soni} ta - ${((aholi_soni/qishloq.aholi_soni)*100).toFixed(2)} %`
+                .list-uchastka 
+                    .list-group
+                        p.list-group-item.list-group-item-action.active Ro'yxatga olish uchastkasidagi instruktorlik uchastkalari
+                        each item in uniqueReport
+                            a(href=`/staff/mahalla?report_id=${item.mahalla_id._id}` class="list-group-item list-group-item-action")= item.mahalla_id.name
+        script(src="/js/main.js") 

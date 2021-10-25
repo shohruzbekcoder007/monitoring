@@ -1,0 +1,93 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/font-awesome.min.css")
+        link(rel="stylesheet", href=`/css/bootstrap.min.css`)
+        link(rel="stylesheet", href=`/css/main.css`)
+        script(src="/js/jquery.js")
+        title login page
+    body
+        .container
+            ul.nav.justify-content-end.nav-menu
+                li.nav-item
+                    a(class="nav-link" href="/staff") Xodimlar
+                li.nav-item
+                    a(class="nav-link" href="/admin") Admin
+            -
+                let aholi_soni = 0;
+                let turarjoy_soni = 0;
+                reports.forEach(elem => {
+                    aholi_soni += elem.aholi_soni;
+                    turarjoy_soni += elem.turar_joy_soni;
+                })
+                let reja_aholi_soni = 0;
+                let reja_turarjoy_soni = 0;
+                viloyatlar.forEach(elem => {
+                    reja_aholi_soni += elem.aholi_soni;
+                    reja_turarjoy_soni += elem.turar_joy_soni;
+                })
+            .row.main-numbers
+                .col-sm-6
+                    .card
+                        .card-body.main-card
+                            h5.card-title= `Aholining ${((aholi_soni/reja_aholi_soni)*100).toFixed(2)}% i`
+                            p.card-text= `${reja_aholi_soni} ta dan ${aholi_soni} tasi`
+                            p.card-text= `Bugungi: ${"-"}  ta`
+                .col-sm-6
+                    .card
+                        .card-body.main-card
+                            h5.card-title= `Turar joyning ${((turarjoy_soni/reja_turarjoy_soni)*100).toFixed(2)}% i`
+                            p.card-text= `${reja_turarjoy_soni} ta dan ${turarjoy_soni} tasi`
+                            p.card-text= `Bugungi: ${"-"} ta`
+        .table-container
+            table.table.table-bordered
+                thead
+                    tr
+                        th(scope="col" rowspan="2") T/r
+                        th(scope="col" rowspan="2") Tuman(shahar) nomi
+                        th(scope="col" rowspan="2") Jami tura joylar soni, birlik
+                        th(scope="col" colspan="3") Suxbat o'tkazilgan xonadonlar soni (1-shakil bo'yicha),birlik
+                        th(scope="col" rowspan="2") Doimiy ro'yxatda turuvchi aholi soni
+                        th(scope="col" colspan="3") Ro'yxatdan o'tkazilgan shaxslar soni
+                        th(scope="col" colspan="2") Ro'yxatdan o'tkazilgan shaxslar soni
+                    tr
+                        th(scope="col") Bir kunda
+                        th(scope="col") Davir boshidan
+                        th(scope="col") Ulushi %
+                        th(scope="col") Bir kunda
+                        th(scope="col") Davir boshidan
+                        th(scope="col") Ulushi %
+                        th(scope="col") Bir kunda
+                        th(scope="col") Davir boshidan
+                tbody
+                    tr
+                        th(scope="row") A
+                        td B
+                        td 1
+                        td 2
+                        td 3
+                        td 4
+                        td 5
+                        td 6
+                        td 7
+                        td 8
+                        td 9
+                        td 10
+                    each item in tumanlar
+                        tr
+                            th(scope="row") 1
+                            td= item.name
+                            td Otto
+                            td Otto
+                            td Otto
+                            td Otto
+                            td Otto
+                            td Otto
+                            td Otto
+                            td Otto
+                            td Otto
+                            td Otto
+                    

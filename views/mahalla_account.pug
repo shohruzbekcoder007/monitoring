@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/font-awesome.min.css")
+        link(rel="stylesheet", href=`/css/bootstrap.min.css`)
+        link(rel="stylesheet", href=`/css/uchastka_account.css`)
+        script(src="/js/jquery.js")
+        title login page
+    body
+        .sidenav
+            .login-main-text
+                h3= `${mahalla.viloyat_id.name} viloyati ${mahalla.tuman_id.name} tumani ${mahalla.qishloq_id.name} ro'yxatga olish uchastkasi ${mahalla.name} instruktorlik uchastkasi`
+                p= `Rejadagi turarjoy soni: ${mahalla.turar_joy_soni}`
+                p= `Rejadagi aholi soni: ${mahalla.aholi_soni}`
+        .main
+            .my-report 
+                - 
+                    let turar_joy_soni = 0
+                    let aholi_soni = 0
+                    reports.forEach(elem => {turar_joy_soni += elem.turar_joy_soni; aholi_soni += elem.aholi_soni})
+                h4.report-page-title= `Ruyxatdan o'tgan turar joylar soni ${turar_joy_soni} ta - ${((turar_joy_soni/mahalla.turar_joy_soni)*100).toFixed(2)} %`
+                h4.report-page-title= `Ruyxatdan o'tgan aholi soni ${aholi_soni} ta - ${((aholi_soni/mahalla.aholi_soni)*100).toFixed(2)} %`
+                .list-uchastka 
+                    .list-group
+                        p.list-group-item.list-group-item-action.active Instruktorlik uchastkasidagi hisob uchastkalari
+                        each item in reports
+                            a(href=`/staff/uchastka?report_id=${item.uchastka_id._id}` class="list-group-item list-group-item-action")= item.uchastka_id.name
+        script(src="/js/main.js") 

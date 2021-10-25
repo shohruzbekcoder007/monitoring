@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/font-awesome.min.css")
+        link(rel="stylesheet", href=`/css/bootstrap.min.css`)
+        link(rel="stylesheet", href=`/css/uchastka_account.css`)
+        script(src="/js/jquery.js")
+        title login page
+    body
+        .sidenav
+            .login-main-text
+                h3= `${uchastka.viloyat_id.name} viloyati ${uchastka.tuman_id.name} tumani ${uchastka.qishloq_id.name} ro'yxatga olish uchastkasi ${uchastka.mahalla_id.name} instruktorlik uchastkasi ${uchastka.name} hisob uchastkasi`
+                p= `Rejadagi turarjoy soni: ${uchastka.turar_joy_soni}`
+                p= `Rejadagi aholi soni: ${uchastka.aholi_soni}`
+        .main
+            .my-report 
+                h4.report-page-title= `Ruyxatdan o'tgan turar joylar soni ${report.turar_joy_soni} ta - ${((report.turar_joy_soni/uchastka.turar_joy_soni)*100).toFixed(2)} %`
+                h4.report-page-title= `Ruyxatdan o'tgan aholi soni ${report.aholi_soni} ta - ${((report.aholi_soni/uchastka.aholi_soni)*100).toFixed(2)} %`
+                .form-row
+                    .form-group.col-md-6
+                        label(for="report_turar_joy") Turar joy soni
+                        input(type="number" class="form-control" id="report_turar_joy" placeholder="turar joy")
+                    .form-group.col-md-6
+                        label(for="report_aholi") Aholi soni
+                        input(type="number" class="form-control" id="report_aholi" placeholder="aholi")
+                    .row.submit-report
+                        button(type="button" class="btn btn-light" id="submit-report" target-report=`${report._id}`) Qo'shish
+        script(src="/js/main.js") 

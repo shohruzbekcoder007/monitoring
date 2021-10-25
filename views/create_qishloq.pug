@@ -1,0 +1,132 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/font-awesome.min.css")
+        link(rel="stylesheet", href=`/css/bootstrap.min.css`)
+        link(rel="stylesheet", href=`/css/main.css`)
+        script(src="/js/jquery.js")
+        title login page
+    body
+        .container.my-admin-container
+            .card
+                .card-title.my-admin-title 
+                    .title-text
+                        h5 Ro'yxatga olish uchastkalari
+                    div(class="biriktirish" data-toggle="modal" data-target="#staffs")
+                        span.biriktirish-text Xodim
+                        .title-iconc 
+                            i(class="fas fa-plus add-iconc" aria-hidden="true")
+                    div(class="modal fade" id="staffs" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
+                        div(class="modal-dialog modal-dialog-centered" role="document")
+                            .modal-content
+                                div(class="modal-header")
+                                    h5(class="modal-title" id="exampleModalLongTitle") Viloyat uchun xodim
+                                    button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                                        span(aria-hidden="true") &times;
+                                .modal-body 
+                                    .input-group.mb-3
+                                        .input-group-prepend
+                                            label(class="input-group-text" for="staff_viloyat_id") Viloyatni tanlang
+                                        select(class="custom-select" aria-label="Small" id="staff_viloyat_id") 
+                                            option(selected value=`${0}`) Tanlang...
+                                            each item in viloyatlar
+                                                option(value=`${item._id}` id=`${item._id}`)= item.name
+                                    .input-group.mb-3
+                                        .input-group-prepend
+                                            label(class="input-group-text" for="staff_tuman_id") Tumanni tanlang
+                                        select(class="custom-select" aria-label="Small" id="staff_tuman_id") 
+                                            option(selected value=`${0}`) Tanlang...
+                                            each item in tumanlar
+                                                option(value=`${item._id}` id=`${item._id}`)= item.name
+                                    .input-group.mb-3
+                                        .input-group-prepend
+                                            label(class="input-group-text" for="staff_qishloq_id") Ro'yxatga olish uchastkasini tanlang
+                                        select(class="custom-select staff" aria-label="Small" id="staff_qishloq_id" staff-status="3") 
+                                            option(selected value=`${0}`) Tanlang...
+                                            each item in qishloqlar 
+                                                option(value=`${item._id}` id=`${item._id}`)= item.name
+                                    .input-group.input-group-sm.mb-3
+                                        .input-group-prepend
+                                            span(class="input-group-text" id="user_name_login") User name:
+                                        input(type="text" id="user_name" class="form-control" aria-label="Small" aria-describedby="user_name_login")
+                                    .input-group.input-group-sm.mb-3
+                                        .input-group-prepend
+                                            span(class="input-group-text" id="password_login") Password:
+                                        input(type="text" id="password" class="form-control" aria-label="Small" aria-describedby="password_login")
+                                div(class="modal-footer")
+                                    button(type="button" class="btn btn-secondary" data-dismiss="modal") Chiqish 
+                                    button(type="button" class="btn btn-primary" id="create_staff") Saqlash
+                .card-body
+                    .row 
+                        .col-3
+                            .list-group
+                                a(href="/admin/create" class="list-group-item") Viloyat qo'shish
+                                a(href="/admin/create/tuman" class="list-group-item") Tuman qo'shish
+                                .list-group-item Ro'yxatga olish uchastkasi qo'shish
+                                a(href="/admin/create/mahalla" class="list-group-item") Instruktorlik uchatkasi qo'shish
+                                a(href="/admin/create/uchastka" class="list-group-item") Hisob uchastkasi qo'shish
+                        .col-9 
+                            .card
+                                .card-body
+                                    table.table.table-hover
+                                        thead
+                                            tr 
+                                                th Viloyat nomi
+                                                th Tuman nomi 
+                                                th Ro'yxatga olish uchastkasi
+                                                th Turar joy soni
+                                                th Aholi soni
+                                        tbody.tuman-table 
+                                            each item in qishloqlar 
+                                                tr 
+                                                    td= item.viloyat_id.name
+                                                    td= item.tuman_id.name 
+                                                    td= item.name 
+                                                    td= item.turar_joy_soni 
+                                                    td= item.aholi_soni
+                            .row.create-uchastka 
+                                button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter") Qo'shish
+                    div(class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true")
+                        div(class="modal-dialog modal-dialog-centered" role="document")
+                            div(class="modal-content")
+                                div(class="modal-header")
+                                    h5(class="modal-title" id="exampleModalLongTitle") Qishloq qo'shish
+                                    button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                                        span(aria-hidden="true") &times;
+                                div(class="modal-body")
+                                    .input-group.mb-3
+                                        .input-group-prepend
+                                            label(class="input-group-text" for="viloyat_id") Viloyatni tanlang
+                                        select(class="custom-select" id="viloyat_id") 
+                                            option(selected value=`${0}`) Tanlang...
+                                            each item in viloyatlar
+                                                option(value=`${item._id}` id=`${item._id}`)= item.name 
+                                    .input-group.mb-3
+                                        .input-group-prepend
+                                            label(class="input-group-text" for="tuman_id") Tumanni tanlang
+                                        select(class="custom-select" id="tuman_id") 
+                                            option(selected value=`${0}`) Tanlang...
+                                            each item in tumanlar 
+                                                option(value=`${item._id}` id=`${item._id}`)= item.name    
+                                    .input-group.input-group-sm.mb-3
+                                        .input-group-prepend
+                                            span(class="input-group-text" id="qishloq") Ro'yxatga olish uchastkasi nomi:
+                                        input(type="text" id="qishloq_nomi" class="form-control" aria-label="Small" aria-describedby="qishloq")
+                                    .input-group.input-group-sm.mb-3
+                                        .input-group-prepend
+                                            span(class="input-group-text" id="turar-joy") Turar joy soni:
+                                        input(type="number" id="jurar_joy_soni" class="form-control" aria-label="Small" aria-describedby="turar-joy")
+                                    .input-group.input-group-sm.mb-3
+                                        .input-group-prepend
+                                            span(class="input-group-text" id="aholi-soni") Aholi soni:
+                                        input(type="number" id="aholi_soni" class="form-control" aria-label="Small" aria-describedby="aholi-soni")
+                                div(class="modal-footer")
+                                    button(type="button" class="btn btn-secondary" data-dismiss="modal") Chiqish 
+                                    button(type="button" class="btn btn-primary" id="create_qishloq") Saqlash 
+                                //- .tumanlar-malumoti(data_array=[tumanlar])
+                    script(src="/js/bootstrap.min.js") 
+                    script(src="/js/main.js") 
+                    
