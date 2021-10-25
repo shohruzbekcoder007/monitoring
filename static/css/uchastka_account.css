@@ -51,6 +51,24 @@ body {
     margin-bottom: 5px;
 }
 
+.sidenav-account{
+    background-color: #d7d7d7;
+    position: inherit;
+    height: 100vh;
+    overflow-x: inherit;
+    overflow-y: scroll;
+}
+
+.sidenav1{
+    background-color: #d7d7d7;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.sidenav1 li{
+    background-color: transparent;
+}
+
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
@@ -77,6 +95,9 @@ body {
         top: 0;
         left: 0;
     }
+    .sidenav-account{
+        position: inherit;
+    }
     .login-form {
         margin-top: 80%;
     }
@@ -102,4 +123,19 @@ body {
 .report-page-title {
     margin: 0;
     padding: 0 0 10px 0
+}
+
+.sidenav-account
+.login-main-text {
+    color: #000;
+}
+
+.sidenav-account
+ul{
+    margin-top: 25px;
+}
+
+.sidenav-account
+li{
+    background-color: transparent;
 }

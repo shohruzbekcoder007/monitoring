@@ -17,8 +17,8 @@ html(lang="en")
                 p= `Rejadagi aholi soni: ${uchastka.aholi_soni}`
         .main
             .my-report 
-                h4.report-page-title= `Ruyxatdan o'tgan turar joylar soni ${report.turar_joy_soni} ta - ${((report.turar_joy_soni/uchastka.turar_joy_soni)*100).toFixed(2)} %`
-                h4.report-page-title= `Ruyxatdan o'tgan aholi soni ${report.aholi_soni} ta - ${((report.aholi_soni/uchastka.aholi_soni)*100).toFixed(2)} %`
+                h4.report-page-title= `Ro'yxatdan o'tgan turar joylar soni ${report.turar_joy_soni} ta - ${((report.turar_joy_soni/uchastka.turar_joy_soni)*100).toFixed(2)} %`
+                h4.report-page-title= `Ro'yxatdan o'tgan aholi soni ${report.aholi_soni} ta - ${((report.aholi_soni/uchastka.aholi_soni)*100).toFixed(2)} %`
                 .form-row
                     .form-group.col-md-6
                         label(for="report_turar_joy") Turar joy soni
@@ -26,6 +26,9 @@ html(lang="en")
                     .form-group.col-md-6
                         label(for="report_aholi") Aholi soni
                         input(type="number" class="form-control" id="report_aholi" placeholder="aholi")
-                    .row.submit-report
-                        button(type="button" class="btn btn-light" id="submit-report" target-report=`${report._id}`) Qo'shish
+                    .form-group.col-md-6
+                        label(for="report_vaqtincha") Vaqtincha yashayotganlar soni
+                        input(type="number" class="form-control" id="report_vaqtincha" placeholder="vaqtincha yashayotganlar soni")
+                    .form-group.col-md-6(style="text-align: end")
+                        button(type="button" class="btn btn-light" id="submit-report" target-report=`${report._id}` style="margin-top: 35px") Qo'shish
         script(src="/js/main.js") 

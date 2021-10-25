@@ -117,15 +117,32 @@ router.get('/tuman', async(req, res) => {
 });
 
 router.put('/staff_update', async(req, res) => {
+    console.log(1)
     let report = await Report.findOne({ _id: req.body.report_id })
     let doc = await Report.updateOne({ _id: req.body.report_id }, {
         turar_joy_soni: parseFloat(report.turar_joy_soni) + parseFloat(req.body.turar_joy_soni),
-        aholi_soni: parseFloat(report.aholi_soni) + parseFloat(req.body.aholi_soni)
+        aholi_soni: parseFloat(report.aholi_soni) + parseFloat(req.body.aholi_soni),
+        vaqtincha: parseFloat(report.vaqtincha) + parseFloat(req.body.vaqtincha),
+        turar_joy_soni_kunlik: parseFloat(req.body.turar_joy_soni),
+        aholi_soni_kunlik: parseFloat(req.body.aholi_soni),
+        vaqtincha_kunlik: parseFloat(req.body.vaqtincha)
     }, {
         returnOriginal: false
     });
-    console.log(doc)
     res.send(doc)
+});
+
+router.get('/account', async(req, res) => {
+    let tuman_id = req.query.tuman_id;
+    let uchastkalar = await Uchastka.find({ tuman_id: tuman_id }).sort({ "qishloq_id": 1 }).populate('mahalla_id').populate('qishloq_id').populate('tuman_id').populate('viloyat_id').exec();
+    let uchastka_id = (req.query.uchastka_id) ? req.query.uchastka_id : uchastkalar[0]._id;
+    let report = await Report.findOne({ uchastka_id: uchastka_id });
+    let uchastka = await Uchastka.findOne({ _id: uchastka_id });
+    res.render('account_tuman_only', {
+        uchastkalar: uchastkalar,
+        report: report,
+        uchastka: uchastka
+    })
 });
 
 module.exports = router;

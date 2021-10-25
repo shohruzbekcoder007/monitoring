@@ -146,10 +146,15 @@ router.post('/uchastka_create', async(req, res) => {
             mahalla_id: saveElement.mahalla_id,
             uchastka_id: saveElement._id,
             turar_joy_soni: 0,
-            aholi_soni: 0
+            aholi_soni: 0,
+            vaqtincha: 0,
+            turar_joy_soni_kunlik: 0,
+            aholi_soni_kunlik: 0,
+            vaqtincha_kunlik: 0
         }
         let newReport = new Report(report);
-        let saveReport = newReport.save();
+        let saveReport = await newReport.save();
+        console.log(saveReport,report,"<-")
         return res.send(saveElement);
     } catch (ex) {
         return res.status(400).send(ex);

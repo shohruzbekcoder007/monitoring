@@ -196,7 +196,23 @@ const ReportSchema = new mongoose.Schema({
     aholi_soni: {
         type: Number,
         required: true
-    }
+    },
+    vaqtincha: {
+        type: Number,
+        required: true
+    },
+    turar_joy_soni_kunlik: {
+        type: Number,
+        required: true
+    },
+    aholi_soni_kunlik: {
+        type: Number,
+        required: true
+    },
+    vaqtincha_kunlik: {
+        type: Number,
+        required: true
+    },
 })
 const Report = mongoose.model("reports", ReportSchema);
 

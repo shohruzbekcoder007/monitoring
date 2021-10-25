@@ -1,0 +1,44 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/font-awesome.min.css")
+        link(rel="stylesheet", href=`/css/bootstrap.min.css`)
+        link(rel="stylesheet", href=`/css/uchastka_account.css`)
+        script(src="/js/jquery.js")
+        title login page
+    body
+        .container-fluid
+            .row
+                .sidenav1.col-4
+                    h4(style="padding: 15px 0;")= `${uchastkalar[0].viloyat_id.name} viloyati ${uchastkalar[0].tuman_id.name} tumani`
+                    ul.list-group.list-group-flush
+                        li.list-group-item.text-muted 
+                                != `Tumanga tegishli uchastkalar`
+                        each item in uchastkalar
+                            if uchastka._id + "" != item._id + ""
+                                li.list-group-item 
+                                    != `Instruktorlik uchaska: <b>${item.mahalla_id.name}</b>. <br/> Hisob uchastka: <a href="account?tuman_id=${item.tuman_id._id}&uchastka_id=${item._id}">${item.name}</a>`
+                            else 
+                                li.list-group-item 
+                                    != `Instruktorlik uchaska: <b>${item.mahalla_id.name}</b>. <br/> Hisob uchastka: <i>${item.name}</i>`
+                .col-8
+                    .my-report 
+                        h4.report-page-title(style="padding-top: 20px")= `${uchastka.name} hisob uchastkasi`
+                        h4.report-page-title= `Ro'yxatdan o'tgan turar joylar soni ${report.turar_joy_soni} ta`
+                        h4.report-page-title= `Ro'yxatdan o'tgan aholi soni ${report.aholi_soni} ta`
+                        .form-row
+                            .form-group.col-md-6
+                                label(for="report_turar_joy") Turar joy soni
+                                input(type="number" class="form-control" id="report_turar_joy" placeholder="turar joy")
+                            .form-group.col-md-6
+                                label(for="report_aholi") Aholi soni
+                                input(type="number" class="form-control" id="report_aholi" placeholder="aholi")
+                            .form-group.col-md-6
+                                label(for="report_vaqtincha") Vaqtincha yashayotganlar soni
+                                input(type="number" class="form-control" id="report_vaqtincha" placeholder="vaqtincha yashayotganlar soni")
+                            .form-group.col-md-6(style="text-align: end")
+                                button(type="button" class="btn btn-light" id="submit-report" target-report=`${report._id}` style="margin-top: 35px") Qo'shish
+        script(src="/js/main.js") 

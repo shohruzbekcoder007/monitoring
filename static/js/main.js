@@ -219,10 +219,12 @@ if (update_report != undefined) {
     update_report.addEventListener('click', (event) => {
         const report_id = document.querySelector("#submit-report").getAttribute('target-report');
         let reqBody = {
-            report_id: report_id,
-            turar_joy_soni: document.querySelector("#report_turar_joy").value,
-            aholi_soni: document.querySelector("#report_aholi").value,
-        }
+                report_id: report_id,
+                turar_joy_soni: document.querySelector("#report_turar_joy").value,
+                aholi_soni: document.querySelector("#report_aholi").value,
+                vaqtincha: document.querySelector("#report_vaqtincha").value,
+            }
+            // console.log(reqBody);
         request = $.ajax({
             url: "/staff/staff_update",
             type: "put",
@@ -246,4 +248,222 @@ if (update_report != undefined) {
             $inputs.prop("disabled", false);
         });
     });
+}
+
+//viloyat
+const getViloyat = (viloyat) => {
+    request = $.ajax({
+        url: "/positions/allviloyat",
+        type: "get",
+        data: {}
+    });
+    request.done(function(response, textStatus, jqXHR) {
+        response.forEach(elem => {
+            $(viloyat).append(`
+                <option value=${elem._id} id=${elem._id}>${elem.name}</option>
+            `)
+        });
+    });
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+        console.error(
+            "The following error occurred: " +
+            textStatus, errorThrown
+        );
+    });
+    request.always(function() {
+        let $form = $('.modal');
+        let $inputs = $form.find("input, select, button, textarea");
+        $inputs.prop("disabled", false);
+    });
+}
+
+//tuman
+const getTuman = (viloyat_id, tuman) => {
+    request = $.ajax({
+        url: "/positions/alltuman",
+        type: "get",
+        data: {}
+    });
+    request.done(function(response, textStatus, jqXHR) {
+        $(tuman).html('');
+        $(tuman).append(`
+            <option value=${0} id=${0}>Tanlang...</option>
+        `)
+        response.forEach(elem => {
+            if (elem.viloyat_id == viloyat_id) {
+                $(tuman).append(`
+                    <option value=${elem._id} id=${elem._id}>${elem.name}</option>
+                `)
+            }
+        });
+    });
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+        console.error(
+            "The following error occurred: " +
+            textStatus, errorThrown
+        );
+    });
+    request.always(function() {
+        let $form = $('.modal');
+        let $inputs = $form.find("input, select, button, textarea");
+        $inputs.prop("disabled", false);
+    });
+}
+
+//qishloq
+const getQishloq = (tuman_id, qishloq) => {
+    request = $.ajax({
+        url: "/positions/allqishloq",
+        type: "get",
+        data: {}
+    });
+    request.done(function(response, textStatus, jqXHR) {
+        $(qishloq).html('');
+        $(qishloq).append(`
+            <option value=${0} id=${0}>Tanlang...</option>
+        `)
+        response.forEach(elem => {
+            if (elem.tuman_id == tuman_id) {
+                $(qishloq).append(`
+                    <option value=${elem._id} id=${elem._id}>${elem.name}</option>
+                `)
+            }
+        });
+    });
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+        console.error(
+            "The following error occurred: " +
+            textStatus, errorThrown
+        );
+    });
+    request.always(function() {
+        let $form = $('.modal');
+        let $inputs = $form.find("input, select, button, textarea");
+        $inputs.prop("disabled", false);
+    });
+}
+
+//mahalla
+const getMahalla = (qishloq_id, mahalla) => {
+    request = $.ajax({
+        url: "/positions/allmahalla",
+        type: "get",
+        data: {}
+    });
+    request.done(function(response, textStatus, jqXHR) {
+        $(mahalla).html('');
+        $(mahalla).append(`
+            <option value=${0} id=${0}>Tanlang...</option>
+        `)
+        response.forEach(elem => {
+            if (elem.qishloq_id == qishloq_id) {
+                $(mahalla).append(`
+                    <option value=${elem._id} id=${elem._id}>${elem.name}</option>
+                `)
+            }
+        });
+    });
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+        console.error(
+            "The following error occurred: " +
+            textStatus, errorThrown
+        );
+    });
+    request.always(function() {
+        let $form = $('.modal');
+        let $inputs = $form.find("input, select, button, textarea");
+        $inputs.prop("disabled", false);
+    });
+}
+
+//uchastka
+const getUchastka = (mahalla_id, uchastka) => {
+    request = $.ajax({
+        url: "/positions/alluchastka",
+        type: "get",
+        data: {}
+    });
+    request.done(function(response, textStatus, jqXHR) {
+        $(uchastka).html('');
+        $(uchastka).append(`
+            <option value=${0} id=${0}>Tanlang...</option>
+        `)
+        response.forEach(elem => {
+            if (elem.mahalla_id != mahalla_id)
+                $(uchastka).append(`
+                <option value=${elem._id} id=${elem._id}>${elem.name}</option>
+            `)
+        });
+    });
+    request.fail(function(jqXHR, textStatus, errorThrown) {
+        console.error(
+            "The following error occurred: " +
+            textStatus, errorThrown
+        );
+    });
+    request.always(function() {
+        let $form = $('.modal');
+        let $inputs = $form.find("input, select, button, textarea");
+        $inputs.prop("disabled", false);
+    });
+}
+
+$('#viloyat_id').on('change', (event) => {
+    getTuman(event.target.value, '#tuman_id');
+});
+
+$('#tuman_id').on('change', (event) => {
+    getQishloq(event.target.value, '#qishloq_id');
+});
+
+$('#qishloq_id').on('change', (event) => {
+    getMahalla(event.target.value, '#mahalla_id');
+});
+
+$('#mahalla_id').on('change', (event) => {
+    getUchastka(event.target.value, '#uchastka_id');
+});
+
+$('#staff_viloyat_id').on('change', (event) => {
+    getTuman(event.target.value, '#staff_tuman_id');
+});
+
+$('#staff_tuman_id').on('change', (event) => {
+    getQishloq(event.target.value, '#staff_qishloq_id');
+});
+
+$('#staff_qishloq_id').on('change', (event) => {
+    getMahalla(event.target.value, 'staff_#mahalla_id');
+});
+
+$('#staff_mahalla_id').on('change', (event) => {
+    getUchastka(event.target.value, 'staff_#uchastka_id');
+});
+
+$(document).ready(function() {
+    getViloyat('#viloyat_id');
+    getViloyat('#staff_viloyat_id');
+});
+
+function createPDF() {
+    var sTable = document.getElementById('tab').innerHTML;
+
+    var style = "<style>";
+    style = style + "table {width: 100%;font: 17px Calibri;}";
+    style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+    style = style + "padding: 2px 3px;text-align: center;}";
+    style = style + "</style>";
+
+    var win = window.open('', '', 'height=700,width=700');
+    win.document.write('<html><head>');
+    win.document.write('<title>O\'zbekiston Respublikasi Davlat statistika qo\'mitasi</title>');
+    win.document.write(style);
+    win.document.write('</head>');
+    win.document.write('<body>');
+    win.document.write(sTable);
+    win.document.write('</body></html>');
+
+    win.document.close();
+
+    win.print();
 }

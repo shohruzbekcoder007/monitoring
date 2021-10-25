@@ -25,6 +25,9 @@ app.use('/staff', staff);
 const main = require('./src/main/main_router');
 app.use('/', main);
 
+const positions = require('./src/positions/positions_router');
+app.use('/positions', positions);
+
 app.listen(config.port, () => {
     logger.info(`[*] 🚀 Listening on port : ${config.port} ..`);
 });

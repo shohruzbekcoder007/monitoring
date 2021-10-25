@@ -32,22 +32,22 @@ html(lang="en")
                                             label(class="input-group-text" for="staff_viloyat_id") Viloyatni tanlang
                                         select(class="custom-select" aria-label="Small" id="staff_viloyat_id") 
                                             option(selected value=`${0}`) Tanlang...
-                                            each item in viloyatlar
-                                                option(value=`${item._id}` id=`${item._id}`)= item.name
+                                            //- each item in viloyatlar
+                                            //-     option(value=`${item._id}` id=`${item._id}`)= item.name
                                     .input-group.mb-3
                                         .input-group-prepend
                                             label(class="input-group-text" for="staff_tuman_id") Tumanni tanlang
                                         select(class="custom-select" aria-label="Small" id="staff_tuman_id") 
                                             option(selected value=`${0}`) Tanlang...
-                                            each item in tumanlar
-                                                option(value=`${item._id}` id=`${item._id}`)= item.name
+                                            //- each item in tumanlar
+                                            //-     option(value=`${item._id}` id=`${item._id}`)= item.name
                                     .input-group.mb-3
                                         .input-group-prepend
                                             label(class="input-group-text" for="staff_qishloq_id") Ro'yxatga olish uchastkasini tanlang
                                         select(class="custom-select staff" aria-label="Small" id="staff_qishloq_id" staff-status="3") 
                                             option(selected value=`${0}`) Tanlang...
-                                            each item in qishloqlar 
-                                                option(value=`${item._id}` id=`${item._id}`)= item.name
+                                            //- each item in qishloqlar 
+                                            //-     option(value=`${item._id}` id=`${item._id}`)= item.name
                                     .input-group.input-group-sm.mb-3
                                         .input-group-prepend
                                             span(class="input-group-text" id="user_name_login") User name:
@@ -102,15 +102,15 @@ html(lang="en")
                                             label(class="input-group-text" for="viloyat_id") Viloyatni tanlang
                                         select(class="custom-select" id="viloyat_id") 
                                             option(selected value=`${0}`) Tanlang...
-                                            each item in viloyatlar
-                                                option(value=`${item._id}` id=`${item._id}`)= item.name 
+                                            //- each item in viloyatlar
+                                            //-     option(value=`${item._id}` id=`${item._id}`)= item.name 
                                     .input-group.mb-3
                                         .input-group-prepend
                                             label(class="input-group-text" for="tuman_id") Tumanni tanlang
                                         select(class="custom-select" id="tuman_id") 
                                             option(selected value=`${0}`) Tanlang...
-                                            each item in tumanlar 
-                                                option(value=`${item._id}` id=`${item._id}`)= item.name    
+                                            //- each item in tumanlar 
+                                            //-     option(value=`${item._id}` id=`${item._id}`)= item.name    
                                     .input-group.input-group-sm.mb-3
                                         .input-group-prepend
                                             span(class="input-group-text" id="qishloq") Ro'yxatga olish uchastkasi nomi:
